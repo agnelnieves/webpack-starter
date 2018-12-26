@@ -1,0 +1,17 @@
+{
+  "name": "webpack-starter",
+  "version": "1.0.0",
+  "description": "Simple tarter web development environment using webpack",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [
+    "Webpack",
+    "Web",
+    "Development",
+    "Starter"
+  ],
+  "author": "Agnel Nieves",
+  "license": "MIT"
+}
