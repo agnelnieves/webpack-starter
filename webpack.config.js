@@ -1,11 +1,12 @@
 const path = require('path');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
+const CleanWebpackPlugin = require('clean-webpack-plugin');
 
 module.exports = {
     entry: './src/index.js',
     output: {
         // Specifies a relative path to distribution directory
-        path: path.resolve(__dirname, 'dist/'),
+        path: path.resolve(__dirname, 'dist'),
         filename: "bundle.js"
     },
     devServer: {
@@ -14,9 +15,10 @@ module.exports = {
         // watchContentBase: true
     },
     plugins: [
-        new HtmlWebpackPlugin({
-            template: './src/index.html'
-        })
+        new HtmlWebpackPlugin(
+            {template: './src/index.html'}
+        ),
+        new CleanWebpackPlugin(path.resolve(__dirname, 'dist'), {})
     ],
     module: {
         rules: [
