@@ -4,7 +4,7 @@ module.exports = {
     entry: './src/index.js',
     output: {
         // Specifies a relative path to distribution directory
-        path: path.resolve(__dirname, 'dist/js/'),
+        path: path.resolve(__dirname, 'dist/'),
         filename: "bundle.js"
     },
     devServer: {
@@ -15,16 +15,44 @@ module.exports = {
     module: {
         rules: [
             {
-                test: /\.css$/,
+                test: /\.scss$/,
                 // use: ["style-loader","css-loader"]
                 // use: ["style-loader/url","file-loader"]
                 use: [
-                    { loader: "style-loader/url" },
-                    { loader: "file-loader",
-                        options: {
-                            name: "[name].[ext]"
-                        }
+                    "style-loader",
+                    "css-loader",
+                    "sass-loader"
+                ]
+                // use: [
+                    // { loader: "style-loader" },
+                    // { loader: "css-loader" },
+                    // { loader: "sass-loader" },
+
+                //     "style-loader",
+                //     "css-loader",
+                //     "sass-loader",
+                //     { loader: "file-loader",
+                //         options: {
+                //             name: "[name].[ext]"
+                //         }
+                //     }
+                // ]
+            },
+            // Transpiling ES6 to ES5 for browser compatibility
+            {
+                test: /\.js$/,
+                exclude: /node_modules/,
+                use: {
+                    loader: 'babel-loader',
+                    options: {
+                        presets: ['@babel/preset-env']
                     }
+                }
+            },
+            {
+                test: /\.(png|svg|jpg|gif)$/,
+                use: [
+                    { loader: "file-loader" }
                 ]
             }
         ]
