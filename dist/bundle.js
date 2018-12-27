@@ -161,7 +161,7 @@ eval("\nvar content = __webpack_require__(/*! !../node_modules/css-loader/dist/c
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-eval("module.exports = __webpack_require__.p + \"logo-white.png\";\n\n//# sourceURL=webpack:///./src/logo-white.png?");
+eval("module.exports = __webpack_require__.p + \"be97e454135c95482f682d73b2ffe486.png\";\n\n//# sourceURL=webpack:///./src/logo-white.png?");
 
 /***/ })
 

@@ -1,4 +1,5 @@
 const path = require('path');
+const HtmlWebpackPlugin = require('html-webpack-plugin');
 
 module.exports = {
     entry: './src/index.js',
@@ -8,10 +9,15 @@ module.exports = {
         filename: "bundle.js"
     },
     devServer: {
-        contentBase: path.join(__dirname, 'dist'),
+        // contentBase: path.join(__dirname, 'dist'),
         port: 9000,
-        watchContentBase: true
+        // watchContentBase: true
     },
+    plugins: [
+        new HtmlWebpackPlugin({
+            template: './src/index.html'
+        })
+    ],
     module: {
         rules: [
             {
@@ -54,6 +60,10 @@ module.exports = {
                 use: [
                     { loader: "file-loader" }
                 ]
+            },
+            {
+                test: /\.(html)$/,
+                use: ['html-loader']
             }
         ]
     }
