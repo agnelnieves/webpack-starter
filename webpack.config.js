@@ -1,13 +1,18 @@
 const path = require('path');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const CleanWebpackPlugin = require('clean-webpack-plugin');
+const MiniCssExtractPlugin = require('mini-css-extract-plugin');
+const OptimizeCssAssetsPlugin = require('optimize-css-assets-webpack-plugin');
+
 
 module.exports = {
-    entry: './src/index.js',
+    entry: {
+        index: './src/index.js'
+    },
     output: {
         // Specifies a relative path to distribution directory
         path: path.resolve(__dirname, 'dist'),
-        filename: "bundle.js"
+        filename: "[name].[contenthash].js"
     },
     devServer: {
         // contentBase: path.join(__dirname, 'dist'),
@@ -15,10 +20,18 @@ module.exports = {
         // watchContentBase: true
     },
     plugins: [
-        new HtmlWebpackPlugin(
-            {template: './src/index.html'}
-        ),
-        new CleanWebpackPlugin(path.resolve(__dirname, 'dist'), {})
+        new HtmlWebpackPlugin(),
+        new HtmlWebpackPlugin({
+            filename: 'about.html',
+            template: './src/about.html'
+        }),
+        new CleanWebpackPlugin(path.resolve(__dirname, 'dist'), {}),
+        new MiniCssExtractPlugin({
+            filename: '[name].[hash].css'
+        }),
+        new OptimizeCssAssetsPlugin({
+            assetNameRegExp: /\.css$/
+        })
     ],
     module: {
         rules: [
@@ -27,7 +40,8 @@ module.exports = {
                 // use: ["style-loader","css-loader"]
                 // use: ["style-loader/url","file-loader"]
                 use: [
-                    "style-loader",
+                    // "style-loader",
+                    MiniCssExtractPlugin.loader,
                     "css-loader",
                     "sass-loader"
                 ]
